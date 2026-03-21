@@ -152,6 +152,11 @@ def get_generate_status():
                     "data": _build_status_data_from_report(report)
                 })
 
+            return jsonify({
+                "success": False,
+                "error": f"Report not found: {report_id}"
+            }), 404
+
         # If simulation_id is provided, first check if a completed report already exists
         if simulation_id:
             existing_report = ReportManager.get_report_by_simulation(simulation_id)
